@@ -30,7 +30,13 @@ public class walletResource implements WalletController {
     @Override
     public WalletBean getWalletByUserId(String id) {
         Integer userId = Integer.parseInt(id);
-        return walletService.findBy(userId);
+        return walletService.findByUserId(userId);
+    }
+
+    @Override
+    public WalletBean getWalletById(String id) {
+        Integer walletId = Integer.parseInt(id);
+        return walletService.findByWalletId(walletId);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package espminvest.poo.wallet.model;
 
+import espminvest.poo.cambio.common.datatype.EstimateBean;
 import espminvest.poo.wallet.common.datatype.CambioTransactionBean;
 import espminvest.poo.wallet.common.datatype.WalletBean;
 
@@ -14,11 +15,10 @@ public class CambioTransactionModel {
     @Column(name = "ct_id")
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
-    @ManyToOne(cascade= CascadeType.ALL)
-    @JoinColumn(name = "wallet_id")
-    private WalletBean wallet_id;
-    private int estimate_id;
+    private int walletId;
+    private int estimateId;
     @Column(name = "ct_date")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date date;
     @Column(name = "ct_qtd")
     private Double qtd;
@@ -26,16 +26,24 @@ public class CambioTransactionModel {
     public CambioTransactionModel(){}
 
     public CambioTransactionModel(CambioTransactionBean cambioTransaction){
-        this.wallet_id = cambioTransaction.getWallet();
-        this.estimate_id = cambioTransaction.getEstimate();
+        this.walletId = cambioTransaction.getWallet().getId();
+        this.estimateId = cambioTransaction.getEstimate().getId();
         this.date = cambioTransaction.getDate();
         this.qtd = cambioTransaction.getQtd();
+
     }
 
     public CambioTransactionBean toBean(){
+        WalletBean wallet = new WalletBean();
+        wallet.setId(walletId);
+
+        EstimateBean estimate = new EstimateBean();
+        estimate.setId(estimateId);
+
         CambioTransactionBean ct = new CambioTransactionBean();
-        ct.setWallet(wallet_id);
-        ct.setEstimate(estimate_id);
+        ct.setId(id);
+        ct.setWallet(wallet);
+        ct.setEstimate(estimate);
         ct.setDate(date);
         ct.setQtd(qtd);
 
