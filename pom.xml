@@ -20,6 +20,12 @@
 	<dependencies>
 
 		<dependency>
+			<groupId>espminvest.poo.stock</groupId>
+			<artifactId>common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
 			<groupId>espminvest.poo.user</groupId>
 			<artifactId>common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>

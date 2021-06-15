@@ -3,6 +3,7 @@ package espminvest.poo.wallet.service;
 import espminvest.poo.cambio.common.controller.CambioController;
 import espminvest.poo.cambio.common.datatype.CurrencyBean;
 import espminvest.poo.cambio.common.datatype.EstimateBean;
+import espminvest.poo.stock.common.controller.StockController;
 import espminvest.poo.wallet.common.datatype.CambioTransactionBean;
 import espminvest.poo.wallet.common.datatype.TransactionBean;
 import espminvest.poo.wallet.common.datatype.WalletBean;
@@ -22,7 +23,8 @@ public class CambioTransactionService {
     @Autowired
     private CambioTransactionRepository cambioTransactionRepository;
 
-    @Autowired CambioController CambioController;
+    @Autowired
+    private CambioController CambioController;
 
     @Autowired
     private WalletService walletService;
@@ -74,7 +76,6 @@ public class CambioTransactionService {
         }
 
         Date now = new Date();
-
 
         CurrencyBean currency = CambioController.getCurrency(String.valueOf(cambioTransaction.getCurrencyId()));
         if (currency == null) {

@@ -40,7 +40,5 @@ public class walletResource implements WalletController {
     }
 
     @Override
-    public void deleteWallet(String id) {
-
-    }
+    public void deleteWallet(String id) { }
 }
